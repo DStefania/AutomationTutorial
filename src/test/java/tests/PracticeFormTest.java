@@ -148,7 +148,9 @@ public class PracticeFormTest {
 
         Assert.assertEquals(tableDescriptionList.get(7).getText(),"Picture","Picture text is not displayed right in the table");
         Assert.assertEquals(tableValueList.get(7).getText(),filename, "Picture name is not correct" );
+
         driver.quit();
+
     }
     }
 // de terminat asserturile, de cautat pentru subject si hobbies ai o lista de stringuri si vrei sa fie transformata lista intr-un string delimitat cu virgula si spatiu cu assert equals
