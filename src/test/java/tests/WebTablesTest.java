@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.List;
 
 public class WebTablesTest {
@@ -23,6 +24,8 @@ public class WebTablesTest {
 
         //facem browser-ul sa fie in modul maxiize
         driver.manage().window().maximize();
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         WebElement elementsMenu = driver.findElement(By.xpath("//h5[text()='Elements']"));
         elementsMenu.click();
