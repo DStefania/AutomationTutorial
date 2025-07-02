@@ -3,14 +3,12 @@ package tests;
 import helperMethods.ElementHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import sharedData.SharedData;
 
 import java.util.List;
 
 public class WebTablesTest extends SharedData {
-
 
     @Test
     public void testMethod() {
@@ -26,8 +24,7 @@ public class WebTablesTest extends SharedData {
         //verificam cate elemente sunt in lista
         List<WebElement> tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         int tableSize = 3;
-        Assert.assertEquals(tableList.size(), tableSize, "Expected table size: " + tableSize + " is not corect");
-
+        elementHelper.validateListSize(tableList, tableSize);
         //identificam un element
         WebElement addElement = driver.findElement(By.id("addNewRecordButton"));
         elementHelper.clickElement(addElement);
@@ -61,13 +58,13 @@ public class WebTablesTest extends SharedData {
 
         //verificare ca s-a adaugat un rand nou in lista
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        Assert.assertEquals(tableList.size(), tableSize + 1);
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(firstnameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(lastnameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(emailValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(ageValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(salaryValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(departmentValue));
+        elementHelper.validateListSize(tableList, tableSize + 1);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),firstnameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),lastnameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),emailValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),ageValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),salaryValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),departmentValue);
 
         //edit functionality
 
@@ -108,14 +105,13 @@ public class WebTablesTest extends SharedData {
         elementHelper.clickJSElement(submitEditElement);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        Assert.assertEquals(tableList.size(), tableSize + 1);
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editFirstNameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editLastNameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editEmailValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editAgeValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editSalaryValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editDepartmentValue));
-
+        elementHelper.validateListSize(tableList, tableSize + 1);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),editFirstNameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),editLastNameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),editEmailValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),editAgeValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),editSalaryValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),editDepartmentValue);
 
         //delete element
 
@@ -124,8 +120,7 @@ public class WebTablesTest extends SharedData {
 
         // verificare valiare date tabel: a revenit la valoarea initiala
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        Assert.assertEquals(tableList.size(), tableSize);
-
+        elementHelper.validateListSize(tableList, tableSize);
 
     }
 }
