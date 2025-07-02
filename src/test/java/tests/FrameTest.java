@@ -1,37 +1,23 @@
 package tests;
 
+import helperMethods.ElementHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import sharedData.SharedData;
 
-import java.time.Duration;
-
-public class FrameTest {
-    public WebDriver driver;
+public class FrameTest extends SharedData {
 
     @Test
 
     public void testMethod() {
-        //deschidem o instanta de Chrome
-        driver = new ChromeDriver();
-
-        //accesam o pagina specifica
-        driver.get("https://demoqa.com");
-
-        //facem browser-ul sa fie in modul maxiize
-        driver.manage().window().maximize();
-
-        //wait implicit
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        ElementHelper elementHelper = new ElementHelper(driver);
 
         WebElement alertsFrameWindowsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        alertsFrameWindowsMenu.click();
+        elementHelper.clickElement(alertsFrameWindowsMenu);
 
         WebElement framesElement = driver.findElement(By.xpath("//span[text()='Frames']"));
-        framesElement.click();
-
+        elementHelper.clickElement(framesElement);
         //driver.switchTo().frame("frame1");
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='frame1']")));
 
@@ -47,7 +33,7 @@ public class FrameTest {
 
         driver.switchTo().parentFrame();
 
-        driver.quit();
+
 
 
     }

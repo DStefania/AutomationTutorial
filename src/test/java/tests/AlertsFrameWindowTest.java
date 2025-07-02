@@ -1,43 +1,33 @@
 package tests;
 
+import helperMethods.ElementHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import sharedData.SharedData;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlertsFrameWindowTest {
-    public WebDriver driver;
+public class AlertsFrameWindowTest extends SharedData {
+
 
     @Test
     public void testMethod() {
-        //deschidem o instanta de Chrome
-        driver = new ChromeDriver();
 
-        //accesam o pagina specifica
-        driver.get("https://demoqa.com");
-
-        //facem browser-ul sa fie in modul maxiize
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
+        ElementHelper elementHelper = new ElementHelper(driver);
 
         WebElement alertsFrameWindowsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        alertsFrameWindowsMenu.click();
+        elementHelper.clickElement(alertsFrameWindowsMenu);
 
         WebElement browserWindowsSubmenu = driver.findElement(By.xpath("//span[text()='Browser Windows']"));
-        browserWindowsSubmenu.click();
+        elementHelper.clickElement(browserWindowsSubmenu);
 
         WebElement newTabElement =driver.findElement(By.id("tabButton"));
-        newTabElement.click();
+        elementHelper.clickElement(newTabElement);
         System.out.println(driver.getCurrentUrl());
 
         List<String> tabsList = new ArrayList<>(driver.getWindowHandles());
-
         //schimba tab-ul in browser
         driver.switchTo().window(tabsList.get(1));
         System.out.println(driver.getCurrentUrl());
@@ -51,7 +41,7 @@ public class AlertsFrameWindowTest {
         driver.navigate().to("https://demoqa.com/browser-windows");
 
         WebElement newWindowElement =driver.findElement(By.id("windowButton"));
-        newWindowElement.click();
+        elementHelper.clickElement(newWindowElement);
         System.out.println(driver.getCurrentUrl());
 
         List<String> windowList = new ArrayList<>(driver.getWindowHandles());
@@ -62,6 +52,6 @@ public class AlertsFrameWindowTest {
         driver.switchTo().window(windowList.get(0));
         System.out.println(driver.getCurrentUrl());
 
-        driver.quit();
+
     }
 }

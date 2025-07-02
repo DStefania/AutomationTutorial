@@ -1,46 +1,36 @@
 package tests;
 
+import helperMethods.ElementHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import sharedData.SharedData;
 
-import java.time.Duration;
 import java.util.List;
 
-public class WebTablesTest {
-    public WebDriver driver;
+public class WebTablesTest extends SharedData {
+
 
     @Test
     public void testMethod() {
-        //deschidem o instanta de Chrome
-        driver = new ChromeDriver();
 
-        //accesam o pagina specifica
-        driver.get("https://demoqa.com");
-
-        //facem browser-ul sa fie in modul maxiize
-        driver.manage().window().maximize();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        ElementHelper elementHelper = new ElementHelper(driver);
 
         WebElement elementsMenu = driver.findElement(By.xpath("//h5[text()='Elements']"));
-        elementsMenu.click();
+        elementHelper.clickElement(elementsMenu);
 
-        WebElement webTablesSubmenu =driver.findElement(By.xpath("//span[text()='Web Tables']"));
-        webTablesSubmenu.click();
+        WebElement webTablesSubmenu = driver.findElement(By.xpath("//span[text()='Web Tables']"));
+        elementHelper.clickElement(webTablesSubmenu);
 
         //verificam cate elemente sunt in lista
         List<WebElement> tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         int tableSize = 3;
-        Assert.assertEquals(tableList.size(), tableSize, "Expected table size: "+tableSize + " is not corect" );
+        Assert.assertEquals(tableList.size(), tableSize, "Expected table size: " + tableSize + " is not corect");
 
         //identificam un element
         WebElement addElement = driver.findElement(By.id("addNewRecordButton"));
-        addElement.click();
+        elementHelper.clickElement(addElement);
 
         WebElement firstnameElement = driver.findElement(By.id("firstName"));
         String firstnameValue = "Stef";
@@ -66,10 +56,8 @@ public class WebTablesTest {
         String departmentValue = "IT";
         departmentElement.sendKeys((departmentValue));
 
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-
         WebElement submitElement = driver.findElement(By.id("submit"));
-        executor.executeScript("arguments[0].click();", submitElement);
+        elementHelper.clickJSElement(submitElement);
 
         //verificare ca s-a adaugat un rand nou in lista
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
@@ -84,7 +72,7 @@ public class WebTablesTest {
         //edit functionality
 
         WebElement editElement = driver.findElement(By.id("edit-record-4"));
-        editElement.click();
+        elementHelper.clickElement(editElement);
 
         WebElement editFirstNameElement = driver.findElement(By.id("firstName"));
         String editFirstNameValue = "Stefuta";
@@ -117,7 +105,7 @@ public class WebTablesTest {
         editDepartmentElement.sendKeys(editDepartmentValue);
 
         WebElement submitEditElement = driver.findElement(By.id("submit"));
-        executor.executeScript("arguments[0].click();", submitEditElement);
+        elementHelper.clickJSElement(submitEditElement);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         Assert.assertEquals(tableList.size(), tableSize + 1);
@@ -132,12 +120,12 @@ public class WebTablesTest {
         //delete element
 
         WebElement deleteElement = driver.findElement(By.id("delete-record-4"));
-        deleteElement.click();
+        elementHelper.clickElement(deleteElement);
 
-       // verificare valiare date tabel: a revenit la valoarea initiala
+        // verificare valiare date tabel: a revenit la valoarea initiala
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         Assert.assertEquals(tableList.size(), tableSize);
 
-        driver.quit();
+
     }
 }
