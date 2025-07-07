@@ -20,19 +20,17 @@ public class FrameTest extends SharedData {
 
         WebElement framesElement = driver.findElement(By.xpath("//span[text()='Frames']"));
         elementHelper.clickElement(framesElement);
-        //driver.switchTo().frame("frame1");
+
         frameHelper.switchFrameByElement(driver.findElement(By.xpath("//iframe[@id='frame1']")));
 
         WebElement firstBlockElement = driver.findElement(By.id("sampleHeading"));
-        System.out.println(firstBlockElement.getText());
+        elementHelper.printTextElement(firstBlockElement);
 
-        driver.switchTo().parentFrame();
+        frameHelper.switchToParent();
 
-        driver.switchTo().frame("frame2");
+        frameHelper.switchFrameByString("frame2");
 
         WebElement secondBlockElement = driver.findElement(By.id("sampleHeading"));
-        System.out.println(secondBlockElement.getText());
-
-        driver.switchTo().parentFrame();
+        elementHelper.printTextElement(secondBlockElement);
     }
 }

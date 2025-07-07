@@ -13,7 +13,6 @@ public class TabHelper {
             this.driver = driver;
         }
 
-
         public void switchToSpecificTab(int position) {
             List<String> tabsList = new ArrayList<>(driver.getWindowHandles());
             driver.switchTo().window(tabsList.get(position));

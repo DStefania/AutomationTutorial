@@ -7,11 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import sharedData.SharedData;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AlertsFrameWindowTest extends SharedData {
-
 
     @Test
     public void testMethod() {
@@ -25,21 +21,21 @@ public class AlertsFrameWindowTest extends SharedData {
         WebElement browserWindowsSubmenu = driver.findElement(By.xpath("//span[text()='Browser Windows']"));
         elementHelper.clickElement(browserWindowsSubmenu);
 
-        WebElement newTabElement =driver.findElement(By.id("tabButton"));
+        WebElement newTabElement = driver.findElement(By.id("tabButton"));
         elementHelper.clickElement(newTabElement);
         System.out.println(driver.getCurrentUrl());
 
         tabHelper.switchToSpecificTab(1);
 
         //inchidem tab-ul pe care te afli in momentul respectiv //driver.quite() - inchide tot browser-ul
-         tabHelper.closeCurrentTab();
+        tabHelper.closeCurrentTab();
         tabHelper.switchToSpecificTab(0);
         System.out.println(driver.getCurrentUrl());
 
         //din cauza reclamei fortam site-ul sa acceseze un URL specific
         driver.navigate().to("https://demoqa.com/browser-windows");
 
-        WebElement newWindowElement =driver.findElement(By.id("windowButton"));
+        WebElement newWindowElement = driver.findElement(By.id("windowButton"));
         elementHelper.clickElement(newWindowElement);
         System.out.println(driver.getCurrentUrl());
 
