@@ -1,46 +1,27 @@
 
 package tests;
 
-import helperMethods.AlertHelper;
-import helperMethods.ElementHelper;
-import org.openqa.selenium.*;
 import org.testng.annotations.Test;
+import pages.AlertFrameWindowPage;
+import pages.AlertPage;
+import pages.IndexPage;
 import sharedData.SharedData;
 
 public class AlertsTest extends SharedData {
 
-
     @Test
     public void testMethod() {
+        IndexPage indexPage = new IndexPage(driver);
+        indexPage.interactWithAlertsFrameWindowMenu();
 
-        ElementHelper elementHelper = new ElementHelper(driver);
-        AlertHelper alertHelper = new AlertHelper(driver);
+        AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(driver);
+        alertFrameWindowPage.interactWithAlertsSubMenu();
 
-        WebElement alertsFrameWindowsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elementHelper.clickElement(alertsFrameWindowsMenu);
-
-        WebElement alertsSubmenu = driver.findElement(By.xpath("//span[text()='Alerts']"));
-        elementHelper.clickElement(alertsSubmenu);
-
-        WebElement alertOkbuttonElement = driver.findElement(By.id("alertButton"));
-        elementHelper.clickElement(alertOkbuttonElement);
-
-        alertHelper.acceptAlert();
-
-        WebElement alertWaitButtonElement = driver.findElement(By.id("timerAlertButton"));
-        elementHelper.clickElement(alertWaitButtonElement);
-
-        alertHelper.acceptAlert();
-
-        WebElement alertOkCancelElement = driver.findElement(By.id("confirmButton"));
-        elementHelper.clickElement(alertOkCancelElement);
-
-        alertHelper.dismissAlert();
-
-        WebElement alertPromptElement = driver.findElement(By.id("promtButton"));
-        elementHelper.clickElement(alertPromptElement);
-
-        alertHelper.fillAlert("Formula1");
+        AlertPage alertPage = new AlertPage(driver);
+        alertPage.dealAlertOk();
+        alertPage.dealAlertTimer();
+        alertPage.dealAlertCancel();
+        alertPage.dealAlertPrompt("Formula1");
        }
 }
 
