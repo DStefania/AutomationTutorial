@@ -70,7 +70,7 @@ public class WebTablesTest extends SharedData {
         //edit functionality
 
         WebElement editElement = driver.findElement(By.id("edit-record-4"));
-        elementHelper.clickElement(editElement);
+        elementHelper.clickJSElement(editElement);
 
         WebElement editFirstNameElement = driver.findElement(By.id("firstName"));
         String editFirstNameValue = "Stefuta";
@@ -110,7 +110,7 @@ public class WebTablesTest extends SharedData {
 
         //delete element
         WebElement deleteElement = driver.findElement(By.id("delete-record-4"));
-        elementHelper.clickElement(deleteElement);
+        elementHelper.clickJSElement(deleteElement);
 
         // verificare valiare date tabel: a revenit la valoarea initiala
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
