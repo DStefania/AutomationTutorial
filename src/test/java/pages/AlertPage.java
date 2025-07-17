@@ -1,54 +1,41 @@
 package pages;
 
-import helperMethods.AlertHelper;
-import helperMethods.ElementHelper;
-import helperMethods.PageHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class AlertPage {
-    public WebDriver driver;
+public class AlertPage extends BasePage {
 
-    public ElementHelper elementHelper;
-    public AlertHelper alertHelper;
-    public PageHelper pageHelper;
-
-    public AlertPage (WebDriver driver){
-        this.driver = driver;
-        elementHelper = new ElementHelper(driver);
-        alertHelper = new AlertHelper(driver);
-        pageHelper = new PageHelper(driver);
-        PageFactory.initElements(driver,this);
+    public AlertPage(WebDriver driver) {
+        super(driver);
     }
 
-    @FindBy ( id = "alertButton")
+    @FindBy(id = "alertButton")
     public WebElement alertOkbuttonElement;
-    @FindBy (id = "timerAlertButton")
+    @FindBy(id = "timerAlertButton")
     public WebElement alertWaitButtonElement;
-    @FindBy (id= "confirmButton")
+    @FindBy(id = "confirmButton")
     public WebElement alertOkCancelElement;
-    @FindBy (id= "promtButton")
+    @FindBy(id = "promtButton")
     public WebElement alertPromptElement;
 
-    public void dealAlertOk(){
-       elementHelper.clickElement(alertOkbuttonElement);
-       alertHelper.acceptAlert();
+    public void dealAlertOk() {
+        elementHelper.clickElement(alertOkbuttonElement);
+        alertHelper.acceptAlert();
     }
 
-    public void dealAlertTimer (){
+    public void dealAlertTimer() {
         elementHelper.clickElement(alertWaitButtonElement);
         alertHelper.acceptAlert();
-        pageHelper.scrollPage(0,400);
+        pageHelper.scrollPage(0, 400);
     }
 
-    public void dealAlertCancel (){
+    public void dealAlertCancel() {
         elementHelper.clickElement(alertOkCancelElement);
         alertHelper.dismissAlert();
     }
 
-    public void dealAlertPrompt(String value){
+    public void dealAlertPrompt(String value) {
         elementHelper.clickElement(alertPromptElement);
         alertHelper.fillAlert(value);
     }

@@ -1,31 +1,17 @@
 package pages;
 
-import helperMethods.ElementHelper;
-import helperMethods.FrameHelper;
-import helperMethods.PageHelper;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
-public class PracticeFormPage {
-    public WebDriver driver;
-    public ElementHelper elementHelper;
-    public FrameHelper frameHelper;
-    public PageHelper pageHelper;
+public class PracticeFormPage extends BasePage {
 
     public PracticeFormPage(WebDriver driver) {
-        this.driver = driver;
-        elementHelper = new ElementHelper(driver);
-        frameHelper = new FrameHelper(driver);
-        pageHelper = new PageHelper(driver);
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(css = "input[placeholder='First Name']")
@@ -70,12 +56,11 @@ public class PracticeFormPage {
     @FindBy(id = "submit")
     public WebElement submitElement;
 
-    @FindBy ( xpath = "//table//td[1]")
+    @FindBy(xpath = "//table//td[1]")
     public List<WebElement> tableDescriptionList;
 
-    @FindBy ( xpath = "//table//td[2]")
+    @FindBy(xpath = "//table//td[2]")
     public List<WebElement> tableValueList;
-
 
     public void fillEntireForm(String firstNameValue, String lastNameValue, String emailValue,
                                String mobileValue, List<String> subjectsValue, String genderValue,
@@ -113,14 +98,13 @@ public class PracticeFormPage {
         elementHelper.clickJSElement(cityElement);
         elementHelper.fillPressElement(cityInputElement, cityValue, Keys.ENTER);
         elementHelper.clickJSElement(submitElement);
-
     }
 
-    public void validateFormValues (String firstNameValue, String lastNameValue, String emailValue,
-                                    String genderValue, String mobileValue,List<String> subjectsValue,
-                                    List<String> hobbiesValues, String filename, String adressValue,
-                                    String stateValue, String cityValue){
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(0),"Student Name");
+    public void validateFormValues(String firstNameValue, String lastNameValue, String emailValue,
+                                   String genderValue, String mobileValue, List<String> subjectsValue,
+                                   List<String> hobbiesValues, String filename, String adressValue,
+                                   String stateValue, String cityValue) {
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(0), "Student Name");
         elementHelper.validateElementContainsText(tableValueList.get(0), firstNameValue);
         elementHelper.validateElementContainsText(tableValueList.get(0), lastNameValue);
 

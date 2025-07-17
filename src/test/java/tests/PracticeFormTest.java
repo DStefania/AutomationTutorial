@@ -33,11 +33,11 @@ public class PracticeFormTest extends SharedData {
         String cityValue = "Lucknow";
 
         PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
-        practiceFormPage.fillEntireForm(firstNameValue,lastNameValue,emailValue,mobileValue,subjectsValue,
-                genderValue,hobbiesValues, uploadValue, adressValue, stateValue, cityValue);
+        practiceFormPage.fillEntireForm(firstNameValue, lastNameValue, emailValue, mobileValue, subjectsValue,
+                genderValue, hobbiesValues, uploadValue, adressValue, stateValue, cityValue);
 
-        practiceFormPage.validateFormValues(firstNameValue, lastNameValue,emailValue,genderValue,mobileValue,
-                subjectsValue,hobbiesValues,uploadValue,adressValue,stateValue,cityValue);
+        practiceFormPage.validateFormValues(firstNameValue, lastNameValue, emailValue, genderValue, mobileValue,
+                subjectsValue, hobbiesValues, uploadValue, adressValue, stateValue, cityValue);
     }
 }
 

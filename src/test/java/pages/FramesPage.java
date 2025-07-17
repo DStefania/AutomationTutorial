@@ -1,37 +1,29 @@
 package pages;
 
-import helperMethods.ElementHelper;
-import helperMethods.FrameHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class FramesPage {
-    public WebDriver driver;
-    public ElementHelper elementHelper;
-    public FrameHelper frameHelper;
+public class FramesPage extends BasePage {
 
-    public FramesPage (WebDriver driver){
-        this.driver = driver;
-        elementHelper = new ElementHelper(driver);
-        frameHelper =new FrameHelper(driver);
-        PageFactory.initElements(driver,this);
+    public FramesPage(WebDriver driver) {
+        super(driver);
     }
-    @FindBy( id ="sampleHeading" )
+
+    @FindBy(id = "sampleHeading")
     public WebElement firstBlockElement;
 
-    @FindBy ( id = "sampleHeading")
-    public  WebElement secondBlockElement;
+    @FindBy(id = "sampleHeading")
+    public WebElement secondBlockElement;
 
-    public void dealWithBigFrame (){
+    public void dealWithBigFrame() {
         frameHelper.switchFrameByElement(driver.findElement(By.xpath("//iframe[@id='frame1']")));
         elementHelper.printTextElement(firstBlockElement);
         frameHelper.switchToParent();
     }
 
-    public void dealWithLittleFrame (){
+    public void dealWithLittleFrame() {
         frameHelper.switchFrameByString("frame2");
         elementHelper.printTextElement(secondBlockElement);
     }
