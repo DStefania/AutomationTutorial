@@ -26,4 +26,8 @@ public class IndexPage extends BasePage {
     public void interactWithFormsMenu() {
         elementHelper.clickElement(formsMenu);
     }
+
+    public void interactWithElementsMenu(){
+               elementHelper.clickElement(elementsMenu);
+    }
 }

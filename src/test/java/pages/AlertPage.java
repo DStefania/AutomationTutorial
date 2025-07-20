@@ -19,6 +19,7 @@ public class AlertPage extends BasePage {
     @FindBy(id = "promtButton")
     public WebElement alertPromptElement;
 
+
     public void dealAlertOk() {
         elementHelper.clickElement(alertOkbuttonElement);
         alertHelper.acceptAlert();

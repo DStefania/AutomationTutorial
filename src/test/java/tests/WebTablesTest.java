@@ -1,120 +1,42 @@
 package tests;
 
-import helperMethods.ElementHelper;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+import pages.ElementsPage;
+import pages.IndexPage;
+import pages.WebTablePage;
 import sharedData.SharedData;
-
-import java.util.List;
 
 public class WebTablesTest extends SharedData {
 
     @Test
     public void testMethod() {
 
-        ElementHelper elementHelper = new ElementHelper(driver);
+        IndexPage indexPage = new IndexPage(driver);
+        indexPage.interactWithElementsMenu();
 
-        WebElement elementsMenu = driver.findElement(By.xpath("//h5[text()='Elements']"));
-        elementHelper.clickElement(elementsMenu);
+        ElementsPage elementsPage = new ElementsPage(driver);
+        elementsPage.interactWithWebTablesSubMenu();
 
-        WebElement webTablesSubmenu = driver.findElement(By.xpath("//span[text()='Web Tables']"));
-        elementHelper.clickElement(webTablesSubmenu);
-
-        //verificam cate elemente sunt in lista
         int tableSize = 3;
-        List<WebElement> tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        elementHelper.validateListSize(tableList, tableSize);
-
-        //identificam un element
-        WebElement addElement = driver.findElement(By.id("addNewRecordButton"));
-        elementHelper.clickElement(addElement);
-
-        WebElement firstnameElement = driver.findElement(By.id("firstName"));
         String firstnameValue = "Stef";
-        elementHelper.fillElement(firstnameElement,firstnameValue);
-
-        WebElement lastnameElement = driver.findElement(By.id("lastName"));
         String lastnameValue = "Danila";
-        elementHelper.fillElement(lastnameElement,lastnameValue);
-
-        WebElement emailElement = driver.findElement(By.id("userEmail"));
         String emailValue = "1224trs@gmal.com";
-        elementHelper.fillElement(emailElement, emailValue);
-
-        WebElement ageElement = driver.findElement(By.id("age"));
         String ageValue = "30";
-        elementHelper.fillElement(ageElement,ageValue);
-
-        WebElement salaryElement = driver.findElement(By.id("salary"));
         String salaryValue = "3620";
-        elementHelper.fillElement(salaryElement,salaryValue);
-
-        WebElement departmentElement = driver.findElement(By.id("department"));
         String departmentValue = "IT";
-        elementHelper.fillElement(departmentElement,departmentValue);
-
-        WebElement submitElement = driver.findElement(By.id("submit"));
-        elementHelper.clickJSElement(submitElement);
-
-        //verificare ca s-a adaugat un rand nou in lista
-        tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        elementHelper.validateListSize(tableList, tableSize + 1);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),firstnameValue);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),lastnameValue);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),emailValue);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),ageValue);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),salaryValue);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),departmentValue);
-
-        //edit functionality
-
-        WebElement editElement = driver.findElement(By.id("edit-record-4"));
-        elementHelper.clickJSElement(editElement);
-
-        WebElement editFirstNameElement = driver.findElement(By.id("firstName"));
         String editFirstNameValue = "Stefuta";
-        elementHelper.clearFillElement(editFirstNameElement,editFirstNameValue);
-
-        WebElement editLastNameElement = driver.findElement(By.id("lastName"));
         String editLastNameValue = "David";
-        elementHelper.clearFillElement(editLastNameElement,editLastNameValue);
-
-        WebElement editEmailElement = driver.findElement(By.id("userEmail"));
         String editEmailValue = "akjakahd@yahoo.com";
-        elementHelper.clearFillElement(editEmailElement, editEmailValue);
-
-        WebElement editAgeElement = driver.findElement(By.id("age"));
         String editAgeValue = "65";
-        elementHelper.clearFillElement(editAgeElement, editAgeValue);
-
-        WebElement editSalaryElement = driver.findElement(By.id("salary"));
         String editSalaryValue = "6500";
-        elementHelper.clearFillElement(editSalaryElement, editSalaryValue);
-
-        WebElement editDepartmentElement = driver.findElement(By.id("department"));
         String editDepartmentValue = "QA";
-        elementHelper.clearFillElement(editDepartmentElement, editDepartmentValue);
 
-        WebElement submitEditElement = driver.findElement(By.id("submit"));
-        elementHelper.clickJSElement(submitEditElement);
+        WebTablePage webTablePage = new WebTablePage(driver);
 
-        tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        elementHelper.validateListSize(tableList, tableSize + 1);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),editFirstNameValue);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),editLastNameValue);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),editEmailValue);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),editAgeValue);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),editSalaryValue);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),editDepartmentValue);
+        webTablePage.addNewEntry(tableSize, firstnameValue, lastnameValue, emailValue, ageValue, salaryValue, departmentValue);
 
-        //delete element
-        WebElement deleteElement = driver.findElement(By.id("delete-record-4"));
-        elementHelper.clickJSElement(deleteElement);
+        webTablePage.editNewEntry(tableSize, editFirstNameValue, editLastNameValue, editEmailValue, editAgeValue, editSalaryValue, editDepartmentValue);
 
-        // verificare valiare date tabel: a revenit la valoarea initiala
-        tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        elementHelper.validateListSize(tableList, tableSize);
-
+        webTablePage.deleteNewEntry(tableSize);
     }
 }
