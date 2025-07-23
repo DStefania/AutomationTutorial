@@ -11,13 +11,13 @@ public class IndexPage extends BasePage {
     }
 
     @FindBy(xpath = "//h5[text()='Alerts, Frame & Windows']")
-    public WebElement alertsFrameWindowsMenu;
+    private WebElement alertsFrameWindowsMenu;
 
     @FindBy(xpath = "//h5[text()='Forms']")
-    public WebElement formsMenu;
+    private WebElement formsMenu;
 
     @FindBy(xpath = "//h5[text()='Elements']")
-    public WebElement elementsMenu;
+    private WebElement elementsMenu;
 
     public void interactWithAlertsFrameWindowMenu() {
         elementHelper.clickElement(alertsFrameWindowsMenu);
@@ -27,7 +27,7 @@ public class IndexPage extends BasePage {
         elementHelper.clickElement(formsMenu);
     }
 
-    public void interactWithElementsMenu(){
-               elementHelper.clickElement(elementsMenu);
+    public void interactWithElementsMenu() {
+        elementHelper.clickElement(elementsMenu);
     }
 }

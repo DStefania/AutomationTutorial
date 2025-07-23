@@ -12,16 +12,17 @@ public class FormsPage {
     public ElementHelper elementHelper;
     public FrameHelper frameHelper;
 
-    public FormsPage(WebDriver driver){
+    public FormsPage(WebDriver driver) {
         this.driver = driver;
         elementHelper = new ElementHelper(driver);
-        frameHelper =new FrameHelper(driver);
-        PageFactory.initElements(driver,this);
+        frameHelper = new FrameHelper(driver);
+        PageFactory.initElements(driver, this);
     }
-    @FindBy( xpath ="//span[text()='Practice Form']" )
-    public WebElement practiceForm;
 
-    public void interactWithPracticeFormSubMenu (){
+    @FindBy(xpath = "//span[text()='Practice Form']")
+    private WebElement practiceForm;
+
+    public void interactWithPracticeFormSubMenu() {
         elementHelper.clickElement(practiceForm);
     }
 }

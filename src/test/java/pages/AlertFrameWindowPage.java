@@ -11,11 +11,11 @@ public class AlertFrameWindowPage extends BasePage {
     }
 
     @FindBy(xpath = "//span[text()='Alerts']")
-    public WebElement alertsSubmenu;
+    private  WebElement alertsSubmenu;
     @FindBy(xpath = "//span[text()='Frames']")
-    public WebElement framesElement;
+    private WebElement framesElement;
     @FindBy(xpath = "//span[text()='Browser Windows']")
-    public WebElement browserWindowsSubmenu;
+    private WebElement browserWindowsSubmenu;
 
     public void interactWithAlertsSubMenu() {
         elementHelper.clickElement(alertsSubmenu);

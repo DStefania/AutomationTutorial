@@ -1,9 +1,5 @@
 package tests;
 
-import helperMethods.ElementHelper;
-import helperMethods.TabHelper;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import pages.AlertFrameWindowPage;
 import pages.IndexPage;
@@ -14,13 +10,13 @@ public class AlertsFrameWindowTest extends SharedData {
 
     @Test
     public void testMethod() {
-        IndexPage indexPage = new IndexPage(driver);
+        IndexPage indexPage = new IndexPage(getDriver());
         indexPage.interactWithAlertsFrameWindowMenu();
 
-        AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(driver);
+        AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(getDriver());
         alertFrameWindowPage.interactWithWindowsSubMenu();
 
-        WindowsPage windowsPage = new WindowsPage(driver);
+        WindowsPage windowsPage = new WindowsPage(getDriver());
         windowsPage.dealWIthNewTab();
         windowsPage.dealWithNewWindow();
     }

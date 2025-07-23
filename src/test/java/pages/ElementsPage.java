@@ -8,11 +8,12 @@ public class ElementsPage extends BasePage {
 
     public ElementsPage(WebDriver driver) {
         super(driver);
-              }
-    @FindBy( xpath ="//span[text()='Web Tables']" )
-    public WebElement webTablesSubmenu;
+    }
 
-    public void interactWithWebTablesSubMenu(){
-       elementHelper.clickElement(webTablesSubmenu);
+    @FindBy(xpath = "//span[text()='Web Tables']")
+    private WebElement webTablesSubmenu;
+
+    public void interactWithWebTablesSubMenu() {
+        elementHelper.clickElement(webTablesSubmenu);
     }
 }
