@@ -28,16 +28,16 @@ public class PracticeFormTest extends SharedData {
         String genderValue = "Female";
         List<String> hobbiesValues = Arrays.asList("Sports", "Reading");
         String uploadValue = "src/test/resources/Beyond the Sky-16.jpg";
-        String adressValue = "Int Mesteacanului 10P1";
+        String addressValue = "Int Mesteacanului 10P1";
         String stateValue = "Uttar Pradesh";
         String cityValue = "Lucknow";
 
         PracticeFormPage practiceFormPage = new PracticeFormPage(getDriver());
         practiceFormPage.fillEntireForm(firstNameValue, lastNameValue, emailValue, mobileValue, subjectsValue,
-                genderValue, hobbiesValues, uploadValue, adressValue, stateValue, cityValue);
+                genderValue, hobbiesValues, uploadValue, addressValue, stateValue, cityValue);
 
         practiceFormPage.validateFormValues(firstNameValue, lastNameValue, emailValue, genderValue, mobileValue,
-                subjectsValue, hobbiesValues, uploadValue, adressValue, stateValue, cityValue);
+                subjectsValue, hobbiesValues, uploadValue, addressValue, stateValue, cityValue);
     }
 }
 

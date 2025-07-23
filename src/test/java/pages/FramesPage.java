@@ -27,5 +27,4 @@ public class FramesPage extends BasePage {
         frameHelper.switchFrameByString("frame2");
         elementHelper.printTextElement(secondBlockElement);
     }
-
 }

@@ -9,7 +9,7 @@ import java.time.Duration;
 import java.util.List;
 
 public class ElementHelper {
-    public WebDriver driver;
+    private WebDriver driver;
 
     public ElementHelper(WebDriver driver) {
         this.driver = driver;
@@ -67,8 +67,8 @@ public class ElementHelper {
     }
 
     public void fillPressElement(WebElement element, String value, Keys keyValue) {
-       fillElement (element, value);
-       pressElement(element, keyValue);
+        fillElement(element, value);
+        pressElement(element, keyValue);
     }
 
     public void waitVisibleElement(WebElement element) {

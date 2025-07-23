@@ -39,7 +39,7 @@ public class PracticeFormPage extends BasePage {
     private WebElement uploadElement;
 
     @FindBy(id = "currentAddress")
-    private WebElement adressElement;
+    private WebElement addressElement;
 
     @FindBy(id = "state")
     private WebElement stateElement;
@@ -64,7 +64,7 @@ public class PracticeFormPage extends BasePage {
 
     public void fillEntireForm(String firstNameValue, String lastNameValue, String emailValue,
                                String mobileValue, List<String> subjectsValue, String genderValue,
-                               List<String> hobbiesValues, String uploadValue, String adressValue,
+                               List<String> hobbiesValues, String uploadValue, String addressValue,
                                String stateValue, String cityValue) {
         elementHelper.fillElement(firstNameElement, firstNameValue);
         elementHelper.fillElement(lastNameElement, lastNameValue);
@@ -92,7 +92,7 @@ public class PracticeFormPage extends BasePage {
         }
         File file = new File(uploadValue);
         elementHelper.fillElement(uploadElement, file.getAbsolutePath());
-        elementHelper.fillElement(adressElement, adressValue);
+        elementHelper.fillElement(addressElement, addressValue);
         elementHelper.clickJSElement(stateElement);
         elementHelper.fillPressElement(stateInputElement, stateValue, Keys.ENTER);
         elementHelper.clickJSElement(cityElement);
@@ -102,7 +102,7 @@ public class PracticeFormPage extends BasePage {
 
     public void validateFormValues(String firstNameValue, String lastNameValue, String emailValue,
                                    String genderValue, String mobileValue, List<String> subjectsValue,
-                                   List<String> hobbiesValues, String filename, String adressValue,
+                                   List<String> hobbiesValues, String filename, String addressValue,
                                    String stateValue, String cityValue) {
         elementHelper.validateElementEqualsText(tableDescriptionList.get(0), "Student Name");
         elementHelper.validateElementContainsText(tableValueList.get(0), firstNameValue);
@@ -128,7 +128,7 @@ public class PracticeFormPage extends BasePage {
         elementHelper.validateElementEqualsText(tableValueList.get(7), file.getName());
 
         elementHelper.validateElementEqualsText(tableDescriptionList.get(8), "Address");
-        elementHelper.validateElementEqualsText(tableValueList.get(8), adressValue);
+        elementHelper.validateElementEqualsText(tableValueList.get(8), addressValue);
 
         elementHelper.validateElementEqualsText(tableDescriptionList.get(9), "State and City");
         elementHelper.validateElementContainsText(tableValueList.get(9), stateValue);
