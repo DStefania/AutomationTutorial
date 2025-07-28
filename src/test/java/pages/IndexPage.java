@@ -31,5 +31,6 @@ public class IndexPage extends BasePage {
 
     public void interactWithElementsMenu() {
         elementHelper.clickElement(elementsMenu);
+        LoggerUtility.infoLog("The user clicks on Forms Menu");
     }
 }

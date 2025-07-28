@@ -3,6 +3,7 @@ package sharedData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -13,7 +14,6 @@ public class SharedData {
     private WebDriver driver;
 
     @BeforeMethod
-
     public void prepareEnvironment() {
         //deschidem o instanta de Chrome
         driver = new ChromeDriver();
@@ -30,9 +30,10 @@ public class SharedData {
     }
 
     @AfterMethod
-
-    public void clearEnvironment() {
-
+    public void clearEnvironment(ITestResult result) {
+        if (result.getStatus()==ITestResult.FAILURE){
+            LoggerUtility.errorLog(result.getThrowable().getMessage());
+        }
         driver.quit();
         LoggerUtility.finishTest(this.getClass().getSimpleName());
     }
