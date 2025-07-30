@@ -28,6 +28,7 @@ public class SharedData {
         //deschidem o instanta de Chrome
         driver = new ChromeDriver(options);
 
+
         //accesam o pagina specifica
         driver.get("https://demoqa.com");
 

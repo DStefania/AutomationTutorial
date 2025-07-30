@@ -28,6 +28,7 @@ public class FramesPage extends BasePage {
 
     public void dealWithLittleFrame() {
         frameHelper.switchFrameByString("frame2");
+        LoggerUtility.infoLog("The user switches to specific frame");
         elementHelper.printTextElement(secondBlockElement);
     }
 }
