@@ -21,7 +21,7 @@ public class IndexPage extends BasePage {
     private WebElement elementsMenu;
 
     public void interactWithAlertsFrameWindowMenu() {
-        elementHelper.clickElement(alertsFrameWindowsMenu);
+        elementHelper.clickJSElement(alertsFrameWindowsMenu);
         LoggerUtility.infoLog("The user clicks on Alert Window Frame Menu");
     }
 
@@ -30,7 +30,7 @@ public class IndexPage extends BasePage {
     }
 
     public void interactWithElementsMenu() {
-        elementHelper.clickElement(elementsMenu);
+        elementHelper.clickJSElement(elementsMenu);
         LoggerUtility.infoLog("The user clicks on Forms Menu");
     }
 }

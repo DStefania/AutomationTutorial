@@ -2,14 +2,9 @@ package sharedData;
 
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
-import java.time.Duration;
 
 public class SharedData {
 
@@ -27,6 +22,11 @@ public class SharedData {
                 ChromeBrowser chromeBrowser = new ChromeBrowser();
                 chromeBrowser.openBrowser();
                 driver = chromeBrowser.getDriver();
+                break;
+            case "Firefox":
+                FirefoxBrowser firefoxBrowser = new FirefoxBrowser();
+                firefoxBrowser.openBrowser();
+                driver = firefoxBrowser.getDriver();
                 break;
             case "Edge":
                 EdgeBrowser edgeBrowser = new EdgeBrowser();

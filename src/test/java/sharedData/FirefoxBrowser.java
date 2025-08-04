@@ -2,24 +2,22 @@ package sharedData;
 
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.time.Duration;
 
-public class EdgeBrowser implements Browser{
+public class FirefoxBrowser implements Browser{
 
     private WebDriver driver;
-    private EdgeOptions edgeOptions;
+    private FirefoxOptions firefoxOptions;
 
 
     @Override
     public void openBrowser() {
 
         configBrowser();
-        driver = new EdgeDriver(edgeOptions);
+        driver = new FirefoxDriver(firefoxOptions);
         driver.get("https://demoqa.com");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         LoggerUtility.startTest(this.getClass().getSimpleName());
@@ -27,13 +25,13 @@ public class EdgeBrowser implements Browser{
 
     @Override
     public void configBrowser() {
-        edgeOptions = new EdgeOptions();
-        edgeOptions.addArguments("window-size=1680,1050");
-        edgeOptions.addArguments("--disable-gpu");
-        edgeOptions.addArguments("--disable-infobars");
-        edgeOptions.addArguments("--disable-extensions");
-//      edgeOeOptions.addArguments("--headless=new");
-        edgeOptions.addArguments("--incognito");
+        firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("window-size=1680,1050");
+        firefoxOptions.addArguments("--disable-gpu");
+        firefoxOptions.addArguments("--disable-infobars");
+        firefoxOptions.addArguments("--disable-extensions");
+//      firefoxOeOptions.addArguments("--headless=new");
+        firefoxOptions.addArguments("--incognito");
 
     }
 
