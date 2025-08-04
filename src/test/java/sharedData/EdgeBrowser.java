@@ -28,7 +28,8 @@ public class EdgeBrowser implements Browser{
     @Override
     public void configBrowser() {
         edgeOptions = new EdgeOptions();
-        edgeOptions.addArguments("window-size=1680,1050");
+        edgeOptions.addArguments("--start-maximized");
+      //  edgeOptions.addArguments("window-size=1920,1080");
         edgeOptions.addArguments("--disable-gpu");
         edgeOptions.addArguments("--disable-infobars");
         edgeOptions.addArguments("--disable-extensions");
