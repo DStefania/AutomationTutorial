@@ -17,5 +17,5 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Run Regression Suite
-      run: mvn clean install -Dbrowser=Chrome -threads=2 -dcicd=true
+      run: mvn clean install -Dbrowser=Chrome -Dthreads=2 -Dcicd=true
 
